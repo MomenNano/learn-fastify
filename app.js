@@ -2,28 +2,44 @@ const fastify = require('fastify')({
   logger: true
 })
 
-const fastifyEnv = require('fastify-env')
+const envSchema = require('env-schema')
 
 const api = require('./services/api')
 
 const schema = {
   type: 'object',
-  required: ['PORT'],
+  required: ['PORT', 'DB_URL'],
   properties: {
     PORT: {
       type: 'string',
       default: 3000
+    },
+    DB_URL: {
+      type: 'string'
     }
   }
 }
 
-const options = {
-  confKey: 'env',
+const env = envSchema({
   schema: schema,
   dotenv: true
-}
+})
 
-fastify.register(api, { prefix: '/api'})
+fastify.decorate('env', env)
+
+console.log(process.env.DB_URL)
+
+
+// Connect to database
+fastify.register(require('fastify-mongodb'), {
+  // force to close the mongodb connection when app stopped
+  // the default value is false
+  forceClose: true,
+
+  url: fastify.env.DB_URL
+})
+
+fastify.register(api, { prefix: '/api' })
 
 const start = async () => {
   try {
@@ -34,8 +50,4 @@ const start = async () => {
   }
 }
 
-fastify.register(fastifyEnv, options).ready(err => {
-  if (err) console.log(err)
-
-  start()
-})
+start()
