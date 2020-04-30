@@ -4,6 +4,8 @@ const fastify = require('fastify')({
 
 const fastifyEnv = require('fastify-env')
 
+const api = require('./services/api')
+
 const schema = {
   type: 'object',
   required: ['PORT'],
@@ -18,16 +20,10 @@ const schema = {
 const options = {
   confKey: 'env',
   schema: schema,
-  data: { CALL: '50500' },
   dotenv: true
 }
 
-fastify.register(fastifyEnv, options).ready(err => {
-  if (err) console.log(err)
-
-  console.log(fastify.env)
-  start()
-})
+fastify.register(api, { prefix: '/api'})
 
 const start = async () => {
   try {
@@ -37,3 +33,9 @@ const start = async () => {
     process.exit(1)
   }
 }
+
+fastify.register(fastifyEnv, options).ready(err => {
+  if (err) console.log(err)
+
+  start()
+})
