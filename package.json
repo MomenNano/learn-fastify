@@ -1,0 +1,29 @@
+{
+  "name": "learn-fastify",
+  "version": "1.0.0",
+  "description": "Learn fastify framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MomenNano/learn-fastify.git"
+  },
+  "keywords": [
+    "fastify"
+  ],
+  "author": "MomenNano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MomenNano/learn-fastify/issues"
+  },
+  "homepage": "https://github.com/MomenNano/learn-fastify#readme",
+  "dependencies": {
+    "fastify": "^2.14.0",
+    "fastify-env": "^1.0.1"
+  },
+  "devDependencies": {
+    "standard": "^14.3.3"
+  }
+}
