@@ -3,6 +3,7 @@ const fastify = require('fastify')({
 })
 
 const envSchema = require('env-schema')
+const mongoose = require('mongoose')
 
 const api = require('./services/api')
 
@@ -27,20 +28,26 @@ const env = envSchema({
 
 fastify.decorate('env', env)
 
-console.log(process.env.DB_URL)
-
-
 // Connect to database
-fastify.register(require('fastify-mongodb'), {
-  // force to close the mongodb connection when app stopped
-  // the default value is false
-  forceClose: true,
+async function connectDB () {
+  try {
+    await mongoose.connect('mongodb://localhost/my_database', {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true
+    })
+  } catch (error) {
+    console.log('error while connecting to mongodb')
+  }
+}
 
-  url: fastify.env.DB_URL
-})
+connectDB()
+
+// APIs modules
 
 fastify.register(api, { prefix: '/api' })
 
+// Start the server
 const start = async () => {
   try {
     await fastify.listen(fastify.env.PORT)
