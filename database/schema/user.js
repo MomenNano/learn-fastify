@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name: String,
   password: String,
-  email: { type: String, unique: true }
+  email: { type: String}
 })
 
 module.exports = mongoose.model('User', userSchema)

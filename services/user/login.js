@@ -6,7 +6,9 @@ const registerHandler = async (req, res) => {
       name: req.body.name,
       password: req.body.password
     })
-
+    console.log(this)
+    const token = this.jwt.sign(user)
+    console.log(token)
     return user
   } catch (error) {
     console.log(error)

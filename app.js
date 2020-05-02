@@ -4,6 +4,7 @@ const fastify = require('fastify')({
 
 const envSchema = require('env-schema')
 const mongoose = require('mongoose')
+const jwt = require('fastify-jwt')
 
 const api = require('./services/api')
 
@@ -16,6 +17,9 @@ const schema = {
       default: 3000
     },
     DB_URL: {
+      type: 'string'
+    },
+    JWT_SECRET:{
       type: 'string'
     }
   }
@@ -31,7 +35,7 @@ fastify.decorate('env', env)
 // Connect to database
 async function connectDB () {
   try {
-    await mongoose.connect('mongodb://localhost/my_database', {
+    await mongoose.connect(fastify.env.DB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true
@@ -42,6 +46,12 @@ async function connectDB () {
 }
 
 connectDB()
+
+// Register JsonWebToken
+
+fastify.register(jwt, {
+  secret: fastify.env.JWT_SECRET
+})
 
 // APIs modules
 
