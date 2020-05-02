@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const User = require('../../database/schema/user')
 
-const registerHandler = async (req, res) => {
+async function registerHandler (req, res) {
   try {
     const user = await User.create({
       _id: new mongoose.Types.ObjectId(),
