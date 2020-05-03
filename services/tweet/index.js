@@ -2,16 +2,12 @@ const postTweetHandler = require('./tweet')
 
 const { postTweetSchema } = require('./schemas')
 
-const userRoute = async (fastify, opts) => {
-  async function verify (request, reply) {
-    try {
-      await request.jwtVerify()
-      console.log(request.user)
-    } catch (err) {
-      reply.send(err)
-    }
-  }
-  fastify.post('/tweet', { schema: postTweetSchema, onRequest: verify }, postTweetHandler)
+async function tweetRoute (fastify, opts) {
+  fastify.post(
+    '/tweet',
+    { schema: postTweetSchema, preValidation: fastify.authenticate },
+    postTweetHandler
+  )
 }
 
-module.exports = userRoute
+module.exports = tweetRoute

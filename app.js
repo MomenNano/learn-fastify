@@ -6,6 +6,8 @@ const envSchema = require('env-schema')
 const mongoose = require('mongoose')
 const jwt = require('fastify-jwt')
 
+const authPlugin = require('./plugins/auth-plugin')
+
 const api = require('./services/api')
 
 const schema = {
@@ -19,7 +21,7 @@ const schema = {
     DB_URL: {
       type: 'string'
     },
-    JWT_SECRET:{
+    JWT_SECRET: {
       type: 'string'
     }
   }
@@ -52,6 +54,8 @@ connectDB()
 fastify.register(jwt, {
   secret: fastify.env.JWT_SECRET
 })
+
+fastify.register(authPlugin)
 
 // APIs modules
 
