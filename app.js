@@ -5,6 +5,9 @@ const fastify = require('fastify')({
 const envSchema = require('env-schema')
 const mongoose = require('mongoose')
 const jwt = require('fastify-jwt')
+const fastifyStatic = require('fastify-static')
+const path = require('path')
+const compress = require('fastify-compress')
 
 const authPlugin = require('./plugins/auth-plugin')
 
@@ -49,6 +52,13 @@ async function connectDB () {
 
 connectDB()
 
+// compress response
+
+fastify.register(compress, {
+  threshold: 200,
+  encodings: ['gzip']
+})
+
 // Register JsonWebToken
 
 fastify.register(jwt, {
@@ -56,6 +66,12 @@ fastify.register(jwt, {
 })
 
 fastify.register(authPlugin)
+
+// Serve static files
+
+fastify.register(fastifyStatic, {
+  root: path.resolve(__dirname, './plugin')
+})
 
 // APIs modules
 
