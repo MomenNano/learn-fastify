@@ -7,7 +7,7 @@ const tweet = require('./tweet')
 const apiRoute = async (fastify, opts) => {
   // Here I should register all the routers
   fastify.get('/', async (req, res) => {
-    //   console.log('here')
+
     // const stream = fs.createReadStream(path.resolve(__dirname, '../egyptian-20181028.json'))
     // const stream = createReadStream(
     //   path.resolve(__dirname, '../public/egyptian-20181028.json')
@@ -22,18 +22,6 @@ const apiRoute = async (fastify, opts) => {
     } catch (error) {
       console.log(error)
     }
-    // res.type('application/json').compress(fs.createReadStream('./package.json'))
-    // return res
-    // try {
-    //   res.compress(
-    //     sendFile('egyptian-20181028.json', path.join(__dirname, '../public'))
-    //   )
-    //   return res
-    //   // res.send('lol')
-    // } catch (error) {
-    //   console.log(error)
-    // }
-    // console.log(path.join(__dirname, '../egyptian-20181028.json'))
   })
 
   fastify.register(user, { prefix: '/user' })
