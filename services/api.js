@@ -17,6 +17,7 @@ const apiRoute = async (fastify, opts) => {
 
     // }
     // const jsonres = JSON.parse(path.join(__dirname, '../european-20181028'))
+    //
     try {
       res.send('lol')
     } catch (error) {
