@@ -8,6 +8,7 @@ const jwt = require('fastify-jwt')
 const fastifyStatic = require('fastify-static')
 const path = require('path')
 const compress = require('fastify-compress')
+const websocket = require('fastify-websocket')
 
 const authPlugin = require('./plugins/auth-plugin')
 
@@ -66,6 +67,19 @@ fastify.register(jwt, {
 })
 
 fastify.register(authPlugin)
+
+// Register Websocket
+
+fastify.register(websocket, {
+  handle,
+  options: {
+    path: '/ws'
+  }
+})
+function handle (conn) {
+  console.log('webb')
+  conn.pipe(conn) // creates an echo server
+}
 
 // Serve static files
 
