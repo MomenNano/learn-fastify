@@ -80,8 +80,21 @@ fastify.register(websocket, {
 })
 function handle (conn) {
   console.log('webb')
+  conn.socket.on('message', message => {
+    console.log('treggerd!!')
+    // message === 'hi from client'
+    conn.socket.send('hi from server')
+  })
   conn.pipe(conn) // creates an echo server
 }
+fastify.get('/', { websocket: true }, (connection, req) => {
+  connection.pipe(connection)
+  connection.socket.on('message', message => {
+    console.log('treggerd!!')
+    // message === 'hi from client'
+    connection.socket.send('hi from server')
+  })
+})
 
 // Serve static files
 
