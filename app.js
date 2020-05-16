@@ -1,5 +1,7 @@
 const fastify = require('fastify')({
-  logger: true
+  logger: {
+    prettyPrint: true
+  }
 })
 
 const envSchema = require('env-schema')
