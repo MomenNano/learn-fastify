@@ -71,13 +71,13 @@ fastify.register(jwt, {
 fastify.register(authPlugin)
 
 // Register Websocket
-
-fastify.register(websocket, {
-  handle,
-  options: {
-    path: '/ws'
-  }
-})
+fastify.register(websocket)
+// fastify.register(websocket, {
+//   handle,
+//   options: {
+//     path: '/ws'
+//   }
+// })
 function handle (conn) {
   console.log('webb')
   conn.socket.on('message', message => {
@@ -88,7 +88,7 @@ function handle (conn) {
   conn.pipe(conn) // creates an echo server
 }
 fastify.get('/', { websocket: true }, (connection, req) => {
-  connection.pipe(connection)
+
   connection.socket.on('message', message => {
     console.log('treggerd!!')
     // message === 'hi from client'

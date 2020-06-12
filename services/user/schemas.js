@@ -6,8 +6,9 @@ const registerSchema = {
       name: { type: 'string' },
       password: { type: 'string' },
       email: { type: 'string' }
+      // avatar: { type: 'file' }
     },
-    additionalPrpoerties: false
+    additionalPrpoerties: true
   },
   response: {
     200: {

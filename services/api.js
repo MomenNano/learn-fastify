@@ -26,12 +26,13 @@ const apiRoute = async (fastify, opts) => {
   //   }
   // })
   // fastify.register(require('fastify-websocket'))
-  fastify.get('/l', { websocket: true }, (connection, req) => {
-    connection.pipe(connection)
+  // prefixTrailingSlash: 'no-slash',
+  fastify.get('/hi', { websocket: true }, (connection, req) => {
     connection.socket.on('message', message => {
       // message === 'hi from client'
       connection.socket.send('hi from server')
     })
+    // connection.socket.on('error', err => console.log(err))
   })
 
   fastify.register(user, { prefix: '/user' })
