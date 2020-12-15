@@ -21,9 +21,15 @@
   "homepage": "https://github.com/MomenNano/learn-fastify#readme",
   "dependencies": {
     "env-schema": "^1.1.0",
+<<<<<<< HEAD
     "fastify": "^3.0.0",
     "fastify-compress": "^3.2.1",
     "fastify-jwt": "^2.1.2",
+=======
+    "fastify": "^2.15.1",
+    "fastify-compress": "^2.0.1",
+    "fastify-jwt": "^1.3.1",
+>>>>>>> 44befd2acfbe0fc57e6ffb06f3a56e4e809a7010
     "fastify-multer": "^1.5.4",
     "fastify-plugin": "^2.0.0",
     "fastify-static": "^3.1.0",
