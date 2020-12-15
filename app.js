@@ -1,5 +1,6 @@
 const fastify = require('fastify')({
   logger: {
+    // level: 'warn',
     prettyPrint: true
   }
 })
@@ -96,6 +97,16 @@ fastify.get('/', { websocket: true }, (connection, req) => {
   })
 })
 
+fastify.get('/tall', (req, res) => {
+
+  res.raw.writeHead(200)
+  // res.header('content-type', 'text/plain')
+  // res.send()
+  // res.header('location', '/')
+  res.raw.end()
+  res.raw.writeHead(500 )
+})
+
 // Serve static files
 
 fastify.register(fastifyStatic, {
@@ -109,7 +120,7 @@ fastify.register(api, { prefix: '/api' })
 // Start the server
 const start = async () => {
   try {
-    await fastify.listen(fastify.env.PORT)
+    await fastify.listen(process.env.PORT)
   } catch (error) {
     fastify.log.error(error)
     process.exit(1)
