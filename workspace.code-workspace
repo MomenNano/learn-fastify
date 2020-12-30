@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"name": "[fastify source archive]",
+			"uri": "codeql-zip-archive://1-50/d:\\Projects\\codeql-home\\databases\\fastify\\src.zip"
+		},
+		{
+			"name": "Quick Queries",
+			"path": "C:\\Users\\Nano\\AppData\\Roaming\\Code\\User\\workspaceStorage\\d5558f8b52570e65340ef448ca150bfd\\GitHub.vscode-codeql\\quick-queries"
+		}
+	],
+	"settings": {}
+}

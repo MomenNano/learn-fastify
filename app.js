@@ -17,7 +17,7 @@ const authPlugin = require('./plugins/auth-plugin')
 
 const api = require('./services/api')
 
-const schema = {
+const schema = { 
   type: 'object',
   required: ['PORT', 'DB_URL'],
   properties: {
@@ -79,17 +79,16 @@ fastify.register(websocket)
 //     path: '/ws'
 //   }
 // })
-function handle (conn) {
-  console.log('webb')
-  conn.socket.on('message', message => {
-    console.log('treggerd!!')
-    // message === 'hi from client'
-    conn.socket.send('hi from server')
-  })
-  conn.pipe(conn) // creates an echo server
-}
+// function handle (conn) {
+//   console.log('webb')
+//   conn.socket.on('message', message => {
+//     console.log('treggerd!!')
+//     // message === 'hi from client'
+//     conn.socket.send('hi from server')
+//   })
+//   conn.pipe(conn) // creates an echo server
+// }
 fastify.get('/', { websocket: true }, (connection, req) => {
-
   connection.socket.on('message', message => {
     console.log('treggerd!!')
     // message === 'hi from client'
@@ -98,15 +97,13 @@ fastify.get('/', { websocket: true }, (connection, req) => {
 })
 
 fastify.get('/tall', (req, res) => {
-
-  res.raw.writeHead(200)
+  // res.raw.writeHead(200)
   // res.header('content-type', 'text/plain')
   // res.send()
   // res.header('location', '/')
   res.raw.end()
-  res.raw.writeHead(500 )
+  res.raw.writeHead(500)
 })
-
 // Serve static files
 
 fastify.register(fastifyStatic, {
