@@ -21,15 +21,15 @@
   "homepage": "https://github.com/MomenNano/learn-fastify#readme",
   "dependencies": {
     "env-schema": "^1.1.0",
-    "fastify": "^3.0.0",
-    "fastify-compress": "^3.2.1",
-    "fastify-jwt": "^2.1.2",
+    "fastify": "^3.10.1",
+    "fastify-compress": "^3.4.1",
+    "fastify-jwt": "^2.3.0",
     "fastify-multer": "^1.5.4",
-    "fastify-plugin": "^2.0.0",
-    "fastify-static": "^3.1.0",
-    "fastify-websocket": "^2.0.4",
-    "mongoose": "^5.9.23",
-    "pino-pretty": "^4.0.0"
+    "fastify-plugin": "^2.3.4",
+    "fastify-static": "^3.4.0",
+    "fastify-websocket": "^2.1.0",
+    "mongoose": "^5.11.12",
+    "pino-pretty": "^4.3.0"
   },
   "devDependencies": {
     "standard": "^14.3.4"
